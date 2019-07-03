@@ -35,7 +35,7 @@ char MORSE[][4] = {
 void setup()
 {
     pinMode(LED_PIN,OUTPUT);     //初始化LED引脚为输出模式
-    Serial.begin(9600);       //初始化串口波特率为115200
+    Serial.begin(9600);       //初始化串口波特率为9600
     digitalWrite(LED_PIN,OFF_LED);//初始状态LED熄灭
 }
 
