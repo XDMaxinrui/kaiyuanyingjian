@@ -17,22 +17,22 @@ void loop()
       digitalWrite (7, LOW) ;
       digitalWrite (8, LOW) ;
       digitalWrite (9, LOW) ;
-  int income=0;
+  int in_come=0;
   while(Serial.available()>0)
   {
   
-    income=Serial.read()-'0';
-    if((income&1)==1)
+    in_come=Serial.read()-'0';
+    if((in_come&1)==1)
     digitalWrite (5, HIGH) ;
-      if((income>>1&1)==1)
+      if((in_come>>1&1)==1)
     digitalWrite (6, HIGH) ;
-      if((income>>2&1)==1)
+      if((in_come>>2&1)==1)
     digitalWrite (7, HIGH) ;
-      if((income>>3&1)==1)
+      if((in_come>>3&1)==1)
     digitalWrite (8, HIGH) ;
     else
     digitalWrite (9, HIGH) ;
-    delay(10);
+    delay(10);//wait for 10ms
 }
 }
 
