@@ -10,16 +10,17 @@ void setup()
 
 void loop()
 {
-  if (Serial.available() > 0)
+  while(Serial.available() > 0)
   {
     int j, str;
-  str= Serial.read()-'0';
+    str= Serial.read()-'0';
     for (j = 5; j <= 8; j++)
     {
       if (str % 2 == 1)
       {
         digitalWrite(j, HIGH);
-      } else {
+      } else 
+      {
         digitalWrite(j, LOW);
       }
         str /= 2;
