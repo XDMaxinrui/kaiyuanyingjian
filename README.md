@@ -13,7 +13,7 @@
 
 ![Image text](https://github.com/XDMaxinrui/Original-hardware/blob/master/%E7%94%A8%E5%88%B0%E7%9A%84image/image2.png)
 
-![Image text](https://github.com/XDMaxinrui/Original-hardware/tree/master/%E7%94%A8%E5%88%B0%E7%9A%84image)
+![Image text](https://github.com/XDMaxinrui/Original-hardware/blob/master/%E7%94%A8%E5%88%B0%E7%9A%84image/image3.jpg)
 
 ## 第二天：Arduino基本编程操作
 1.介绍了Arduino编程语言并建立arduino库函数
@@ -23,8 +23,10 @@
 3.讲解morse库函数并通过串口接受字符转化为morse发出。
 morse代码
 
-``` #include "Arduino.h"
-#include "Morse.h"
+morse.cpp
+```
+ #include "Arduino.h"
+ #include "Morse.h"
 
 Morse::Morse(int pin)
 {
@@ -59,4 +61,23 @@ void Morse::w_space()
 {
 	digitalWrite(_pin,LOW);
 	delay(_dottime*7);
-}  ```
+} 
+```
+```
+morse.h 
+ifndef _MORSE_H
+#define _MORSE_H
+class Morse
+{
+  public:
+    Morse(int pin);
+    void dot();
+    void dash();
+    void c_space();
+    void w_space();
+  private:
+    int _pin;
+    int _dottime;
+};
+#endif /*_MORSE_H*/
+```
