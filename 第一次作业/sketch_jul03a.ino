@@ -8,59 +8,57 @@ char MORSE[][4] = {
 
 void setup()
 {
-    pinMode(LED_PIN,OUTPUT);     //初始化LED引脚为输出模式
-    Serial.begin(9600);       //初始化串口波特率为9600
-    digitalWrite(LED_PIN,OFF_LED);//初始状态LED熄灭
+     Serial.begin(9600); 
 }
-
-void loop() //主循环,实现串口控制LED的亮灭
+void loop() //main函数
 {
-  String str = "";  
+  String incomes = "";  
   String morse_str= ""; 
-  int i=0, j=0, flag = 0;
-  int n = 0;  //对传入字符个数计数
+  int i, j, flag = 0;
+  int n = 0; 
   while (Serial.available() > 0)
   {
     flag= 1;  
-    str += char(Serial.read());
-    delay(2);
+    incomes+= char(Serial.read());
     n++;
+   delay(2);
   }
 
   if (flag)
   {
     for (i = 0; i < n; i++)
     {
-      for (j= 0; j < 4; j++)
+       if (incomes[i] >96 && incomes[i] < 123) 
       {
-           if (str[i] > 96&& str[i] <123)
-        { morse_str= morse_str+char(MORSE[int(str[i] - 97)][j]);
+         for (j= 0; j < 4; j++)
+        {
+           morse_str= morse_str+char(MORSE[int(incomes[i] - 97)][j]);
         }
       }
-           morse_str=morse_str+' ';
+          if (int(incomes[i])==32)
+          {morse_str=morse_str+'/';}
+          else{morse_str=morse_str+' ';}
     }
-    Serial.println(morse_str);  //串口传入
-    for (i = 0; morse_str[i]!='\0' ; i++)//从头到尾读取莫尔斯电码
+    Serial.println(morse_str); 
+    for (i = 0; morse_str[i]!='\0' ; i++)
     {
       if (morse_str[i] == '.')
       {
        morse.dot();
       }
-      else if (morse_str[i] == '-')
+      if (morse_str[i] == '-')
       {
        morse.dash();
       }
-      else if (morse_str[i] == ' ')
+      if (morse_str[i] == ' ')
       {
        morse.w_space();
       }
-      if (morse_str[i] != ' ' && str[i] != '*')
+      if (morse_str[i] ==  '/')
       {
        morse.c_space();
       }
     }
-    Serial.println("完成");
     delay(2);
-    uart_rx_buf = 0;            //清除接收到的字符
   }
 }
