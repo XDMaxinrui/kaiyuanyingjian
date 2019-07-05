@@ -9,11 +9,11 @@
 
 第一天的作业是下载了三个软件及建立Github代码仓
 
-[Image text](https://github.com/XDMaxinrui/Original-hardware/tree/master/%E7%94%A8%E5%88%B0%E7%9A%84image)
+![Image text](https://github.com/XDMaxinrui/Original-hardware/blob/master/%E7%94%A8%E5%88%B0%E7%9A%84image/image1.jpg)
 
-[Image text](https://github.com/XDMaxinrui/Original-hardware/blob/master/%E7%94%A8%E5%88%B0%E7%9A%84image/image2.png)
+![Image text](https://github.com/XDMaxinrui/Original-hardware/blob/master/%E7%94%A8%E5%88%B0%E7%9A%84image/image2.png)
 
-[Image text](https://github.com/XDMaxinrui/Original-hardware/tree/master/%E7%94%A8%E5%88%B0%E7%9A%84image)
+![Image text](https://github.com/XDMaxinrui/Original-hardware/tree/master/%E7%94%A8%E5%88%B0%E7%9A%84image)
 
 ## 第二天：Arduino基本编程操作
 1.介绍了Arduino编程语言并建立arduino库函数
