@@ -172,7 +172,7 @@ void loop() //main函数
 }
 ```
 
-### 第三天
+### 第三天  使用Tinkercad仿真
 
 1.介绍如何使用Arduino仿真网站Tinkercad及电机的使用
 
@@ -300,3 +300,140 @@ void loop()
   }
   ```
   
+  ## 第四天 介绍不使用库的Morse及用Tinkercad仿真
+  
+  作业 
+  * 不使用库函数的Morse代码
+  * 课程summary
+  ！[Image](https://github.com/XDMaxinrui/Original-hardware/blob/master/%E7%AC%AC%E5%9B%9B%E5%A4%A9%E4%BD%9C%E4%B8%9A/MORSE.png)
+ 
+ ```
+#define pin 13
+#define dottime 10
+
+void morsedot() {
+  digitalWrite(pin, HIGH);
+  delay(dottime);
+  digitalWrite(13, LOW);
+  delay(dottime);
+}
+
+void morsedash() {
+  digitalWrite(pin, HIGH);
+  delay(dottime * 4);
+  digitalWrite(13, LOW);
+  delay(dottime);
+}
+
+void morsec_space() {
+  digitalWrite(pin, LOW);
+  delay(dottime * 3);
+}
+
+void morsew_space() {
+  digitalWrite(pin, LOW);
+  delay(dottime * 7);
+}
+
+char MORSE[][4] = {
+  {'.', '-', '*', '*'}, 
+  {'-', '.', '.', '.'},
+  {'-', '.', '-', '.'}, 
+  {'-', '.', '.', '*'}, 
+  {'.', '*', '*', '*'}, 
+  {'.', '.', '-', '.'}, 
+  {'-', '-', '.', '*'},
+  {'.', '.', '.', '.'},
+  {'.', '.', '*', '*'},
+  {'.', '-', '-', '-'},
+  {'-', '.', '-', '*'},
+  {'.', '-', '.', '.'},
+  {'-', '-', '*', '*'},
+  {'-', '.', '*', '*'},
+  {'-', '-', '-', '*'},
+  {'.', '-', '-', '.'},
+  {'-', '-', '.', '-'},
+  {'.', '-', '.', '*'},
+  {'.', '.', '.', '*'},
+  {'-', '*', '*', '*'},
+  {'.', '.', '-', '*'},
+  {'.', '.', '.', '-'},
+  {'.', '-', '-', '*'},
+  {'-', '.', '.', '-'},
+  {'-', '.', '-', '-'},
+  {'-', '-', '.', '.'} 
+};
+void setup()
+{
+     Serial.begin(9600); 
+  }
+void loop() //main函数
+{
+  String incomes = "";  
+  String morse_incomes= ""; 
+  int i, j, flag = 0;
+  int n = 0; 
+  while (Serial.available() > 0)
+  {
+    flag= 1;  
+    incomes+= char(Serial.read());
+    n++;
+   delay(2);
+  }
+
+  if (flag)
+  {
+    for (i = 0; i < n; i++)
+    {
+       if (incomes[i] >96 && incomes[i] < 123) 
+      {
+         for (j= 0; j < 4; j++)
+        {
+           morse_incomes= morse_incomes+char(MORSE[int(incomes[i] - 97)][j]);
+        }
+      }
+          if (int(incomes[i])==32)
+          {morse_incomes=morse_incomes+'/';}
+          else{morse_incomes=morse_incomes+' ';}
+    }
+    Serial.println(morse_incomes); 
+    for (i = 0; morse_incomes[i]!='\0' ; i++)
+    {
+      if (morse_incomes[i] == '.')
+      {
+       morsedot();
+      }
+      if (morse_incomes[i]== '-')
+      {
+       morsedash();
+      }
+      if (morse_incomes[i] == ' ')
+      {
+       morsew_space();
+      }
+      if (morse_incomes[i]==  '/')
+      {
+       morsec_space();
+      }
+    }
+    delay(2);
+  }
+}
+```
+# 二、国际双创周的收益
+
+* 了解到了Arduino 的基础知识以及掌握了许多开源硬件的必要应用和网站，为以后自己学习开源硬件打下了良好的基础
+
+*  同时在四天的课程中体会到了自学能力对开源硬件的重要性，从开始的一头雾水到自己查资料，了解，和与同学交流，直到模拟成功的过程是这四天最重要的经历。
+同时因为我是微电子学院的大一，对编程语言和电路知识都特别欠缺，所以在学习方面有点困难，经过四天的学习，在编程等方面的基础知识都有了一定的提升。
+
+* 理解了老师强调的：开源最重要的是共享。与他人分享的过程更是一个碰撞出创意的火花的过程。在交流的过程中不仅仅解决了自己的问题，也可能有一些意料之外的收获。
+
+# 三、意见与建议
+* 首先，我觉得学校开设的国际双创周课程是对学生很有好处的。但是，它也有一些不足。我觉得，在开课之前应与教师沟通，确认课程所需要的基本工具和软件。以及一些基础知识。应为我们四天的课程有一部分时间是花在了Linux系统和Github网站上。我觉得基础的知识和工具的使用是可以通过课前的沟通让学生自己掌握。而在课上则是更加关注于知识的讲解。
+
+* 其次我觉得应该考虑教学班的人数，我们班共计有三百多人，在第一天开课时，我甚至找不到座位，教学效果更是因为人数过多而受到影响，而且老师也说因为人数过多所以有一些活动是没法开展的。我可以理解学校因为教学资源有限所以加大课容量，但是我也希望能考虑教学效果。
+
+* 其次，我觉得应该加强在平时学习中关于知识实践的强化，因为我们学习编程语言是只是学习了语法，并没有与硬件相结合进行实践，这导致在这次课程中我很茫然，从来都没有想过我学过的东西还能控制七段数码管。
+
+* 最终，感谢学校和老师，给了我一个开阔视野的机会。记得老师在第一天开课就说过：我能为你们做的是帮你们打开一扇门，现在我对开源硬件已经有了一定的了解，在以后我也会继续学习它的。
