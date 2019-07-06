@@ -370,9 +370,8 @@ void loop() //main函数
 {
   String incomes = "";  
   String morse_incomes= ""; 
-  int i, j, flag = 0;
-  int n = 0; 
-  while (Serial.available() > 0)
+  int i, j, flag = 0,n = 0; 
+  if (Serial.available() > 0)
   {
     flag= 1;  
     incomes+= char(Serial.read());
